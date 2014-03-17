@@ -9,7 +9,7 @@ function preload() {
     //  string by which we'll identify the image later in our code.
 
     //  The second parameter is the URL of the image (relative)
-    game.load.image('enveloppe', 'Pierre1/enveloppe.png');
+    game.load.image('enveloppe', 'Tests_mouvement/enveloppe.png');
 }
 
 var enveloppe;
