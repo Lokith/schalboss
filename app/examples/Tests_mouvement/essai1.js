@@ -1,5 +1,5 @@
 
-var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update });
+var game = new Phaser.Game(640, 960, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update });
 
 function preload() {
 
@@ -46,7 +46,7 @@ function update() {
     if (enveloppe.y > game.world.height)
     {
         enveloppe.y = 0;
-        var x_random = Math.round(Math.random()*700);
+        var x_random = Math.round(Math.random()*600);
         enveloppe.x = x_random;
     }
 

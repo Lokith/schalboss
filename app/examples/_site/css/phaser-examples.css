@@ -25,7 +25,7 @@ ul.nav-links > li > a{color: #fff; text-decoration: none;}
 ul.nav-links > li > a:hover{text-decoration: underline;}
 .link-home, .link-latest, .link-forum, .link-docs, .link-twitter{background-image: url('../../_site/images/nav-icons.png'); background-repeat: no-repeat;}
 
-.main-title{font-family: 'HelveticaBd', Helvetica, Arial;font-size:55px;color:#fff;text-shadow:0 0 15px #b643e6; text-align: center; display: block; margin: 40px auto 0 auto;}
+.main-title{font-family: 'HelveticaBd', Helvetica, Arial;font-size:55px;color:#fff;text-shadow:0 0 15px #b643e6; text-align: center; display: block; margin: 0 auto 0 auto;}
 .link-home{background-position: 0 -9px;}
 .link-latest{background-position: 0 -37px;}
 .link-forum{background-position: 0 -67px;}
@@ -36,7 +36,7 @@ ul.nav-links > li > a:hover{text-decoration: underline;}
 .phaser-version > span{margin-top: 10px; display: inline-block; margin-left: 60px; margin-right: 25px;}
 .phaser-version > a {color: #fff; text-decoration: none; background: url('../../_site/images/version-button.png') no-repeat; background-size: cover; display: inline-block; width: 123px; height: 10px; vertical-align: middle; text-align: center;padding-top:11px; padding-bottom: 11px}
 .phaser-version > a:hover{text-decoration: underline;}
-.phaser-logo{display: block; float: right; width: 168px;height: 144px; background: url('../../_site/images/phaser-logo.png') no-repeat; margin-top: 40px; margin-right: 40px;}
+.phaser-logo{position:absolute;display: block; float: right; width: 168px;height: 144px; background: url('../../_site/images/phaser-logo.png') no-repeat; margin-top: 40px; margin-right: 40px;}
 
 #upgrade {
   display: none;
@@ -147,7 +147,7 @@ ul.group-items > li a:visited span.mark{background: url('../../_site/images/grou
 ul.footer-links{list-style-type: none; width:100%; clear:both; padding:0; margin:0; float:right; margin-top: -20px;}
 ul.footer-links > li{display: inline-block; padding:0; margin:0; float:right;}
 
-.game-panel{width:800px; height: 680px; overflow: hidden; display:block; clear:both;box-shadow: 0 0 15px #6ac8f8; margin:-150px auto 0 auto; border-radius: 10px; position: relative; z-index: 10;}
+.game-panel{width:640px; height: 960px; overflow: hidden; display:block; clear:both;box-shadow: 0 0 15px #6ac8f8; margin:-150px auto 0 auto; border-radius: 10px; position: relative; z-index: 10;}
 .game-screen{display:block; clear:both; width:800px;height:600px;margin:0;}
 .game-controls{display:block; width:100%; height:80px; margin:0; padding:0;background: url('../../_site/images/game-controls-bg.jpg') repeat-x;}
 ul.left-controls{float:left; list-style-type: none; margin:30px 0 0 25px;padding:0; display: inline-block;}
@@ -165,7 +165,7 @@ ul.right-controls > li{margin:0;padding:0; display: inline-block; vertical-align
 .mute-button{width: 121px; height:52px; display:inline-block; background: url('../../_site/images/mute-button.png') no-repeat;}
 .reset-button{width: 121px; height:52px; display:inline-block; background: url('../../_site/images/reset-button.png') no-repeat;}
 .pause-button:hover, .mute-button:hover, .reset-button:hover{cursor: pointer;}
-.filler{height: 720px;}
+.filler{height: 990px;}
 .code-block{font-family: Courier; font-size: 12px; color: #fff; width:750px; height:auto; overflow: scroll; margin:0 auto; border-radius: 10px; background:#fdfdfd; border:0 !important; box-shadow: inset 0 5px 15px rgba(0,0,0,0.15), 0 0 10px rgba(106,200,248,0.5); padding: 25px !important;display: block; margin-bottom: 20px; margin-top: 30px;}
 .px800{width:800px; clear:both; display: block; margin:0 auto; line-height: 1.5em;}
 .gradient p{color:#333;}
