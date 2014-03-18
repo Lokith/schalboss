@@ -10,9 +10,14 @@ function preload() {
 
     //  The second parameter is the URL of the image (relative)
     game.load.image('enveloppe', 'Tests_mouvement/enveloppe.png');
-}
+    game.load.image('colour', 'Tests_mouvement/colour.png');
 
-var enveloppe;
+}
+var timer = 0;
+var total = 1;
+var state = true;
+var speed = 90000;
+var time = 2;
 
 
 function create() {
@@ -20,35 +25,49 @@ function create() {
     //  This creates a simple sprite that is using our loaded image and
     //  displays it on-screen
     //  and assign it to a variable
-    enveloppe = game.add.sprite(100, 100, 'enveloppe');
+    game.add.image(0, 0, 'colour');
+    createEnveloppe();
 
 
-/*
-    game.physics.enable(enveloppe, Phaser.Physics.ARCADE);
+    enveloppeTimer = game.time.events.repeat(Phaser.Timer.SECOND * 2, 5, createEnveloppe, this);
 
-    enveloppe.body.velocity.y=150;*/
-
-    //  Here we add a new animation called 'run'
-    //  We haven't specified any frames because it's using every frame in the texture atlas
-    enveloppe.animations.add('run');
-
-    //  And this starts the animation playing by using its key ("run")
-    //  15 is the frame rate (15fps)
-    //  true means it will loop when it finishes
-    enveloppe.animations.play('run', 15, true);
 
 }
 
-function update() {
-
-    enveloppe.y += 2;
-
-    if (enveloppe.y > game.world.height)
+function update(){
+    if (total === 100)
     {
-        enveloppe.y = 0;
-        var x_random = Math.round(Math.random()*600);
-        enveloppe.x = x_random;
+        //  Removes the timer, starting with the top one and working down
+        game.time.events.remove(enveloppeTimer);
+        total = 0;
+        enveloppeTimer = game.time.events.repeat(Phaser.Timer.SECOND * time, 5, createEnveloppe, this);
+        time = time*0.9;
+        speed -= 1000;
+
     }
 
+}
+
+function destoyIt (enveloppe) {
+
+    enveloppe.destroy();
+}
+
+function createEnveloppe(){
+
+        var enveloppe = game.add.sprite(game.world.randomX, 0, 'enveloppe');
+        enveloppe.animations.add('run');
+        enveloppe.animations.play('run', 20, true);
+
+        enveloppe.inputEnabled = true;
+
+        enveloppe.input.useHandCursor = true;
+
+        enveloppe.events.onInputDown.add(destoyIt, this);
+
+        game.add.tween(enveloppe).to({ y: game.height + (1600 + enveloppe.y) }, speed, Phaser.Easing.Linear.None, true);
+
+        total++;
+        timer = game.time.now + 100;
 
 }
