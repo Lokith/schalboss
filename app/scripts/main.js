@@ -1,8 +1,9 @@
-var game = new Phaser.Game(640, 960, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update });
+var game = new Phaser.Game(640, 943, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update });
 
 function preload() {
     game.load.image('enveloppe', 'assets/enveloppe.png');
     game.load.image('fondecran', 'assets/schalbi.png');
+    game.load.image('overlay', 'assets/overlay.png');
 }
 
 var enveloppe;
@@ -10,6 +11,8 @@ var enveloppe;
 
 function create() {
 
+    game.add.image(0,0,'overlay');
+    game.add.image(0,898, 'overlay');
     game.add.image(0, 45, 'fondecran');
     enveloppe = game.add.sprite(100, 100, 'enveloppe');
     enveloppe.animations.add('run');
