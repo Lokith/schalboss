@@ -22,7 +22,7 @@ function create() {
     game.add.image(0,898, 'overlay');
     game.add.image(0, 45, 'fondecran');
 
-    enveloppeTimer = game.time.events.repeat(Phaser.Timer.SECOND * time, 100, createEnveloppe, this);
+    enveloppeTimer = game.time.events.repeat(Phaser.Timer.SECOND * time, 100, createEnveloppeBlue, this);
 
 
 }
@@ -32,7 +32,7 @@ function update() {
     {
         game.time.events.remove(enveloppeTimer);
         total = 0;
-        enveloppeTimer = game.time.events.repeat(Phaser.Timer.SECOND * time, 5, createEnveloppe, this);
+        enveloppeTimer = game.time.events.repeat(Phaser.Timer.SECOND * time, 5, createEnveloppeBlue, this);
         time = time*0.9;
         speed -= 1000;
     }
@@ -41,17 +41,18 @@ function update() {
 
 function createEnveloppeBlue(){
 
-    var enveloppe = game.add.sprite(getRandomInt(50,590), 0, 'enveloppe_bleu');
+    var enveloppe = game.add.sprite(getRandomInt(50,400), 0, 'enveloppe_bleu');
+    enveloppe.scale.setTo(0.4, 0.4);
     enveloppe.animations.add('run');
     enveloppe.animations.play('run', 20, true);
     enveloppe.inputEnabled = true;
     enveloppe.input.useHandCursor = true;
-    enveloppe.events.onInputDown.add(destoyIt, this);
+    enveloppe.events.onInputDown.add(destroyIt, this);
     game.add.tween(enveloppe).to({ y: game.height + (1600 + enveloppe.y) }, speed, Phaser.Easing.Linear.None, true);
     total++;
 }
 
-function destoyIt (enveloppe) {
+function destroyIt (enveloppe) {
     enveloppe.destroy();
 }
 
