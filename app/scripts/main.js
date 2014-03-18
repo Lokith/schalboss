@@ -4,6 +4,8 @@ function preload() {
     game.load.image('enveloppe', 'assets/enveloppe.png');
     game.load.image('fondecran', 'assets/schalbi.png');
     game.load.image('overlay', 'assets/overlay.png');
+    game.load.image('overlay_bas', 'assets/overlay_bas.png');
+    game.load.image('coeur', 'assets/coeur.png')
 }
 
 var enveloppe;
@@ -12,7 +14,8 @@ var enveloppe;
 function create() {
 
     game.add.image(0,0,'overlay');
-    game.add.image(0,898, 'overlay');
+    game.add.image(0,898, 'overlay_bas');
+    game.add.image(550, 7, 'coeur');
     game.add.image(0, 45, 'fondecran');
     enveloppe = game.add.sprite(100, 100, 'enveloppe');
     enveloppe.animations.add('run');
