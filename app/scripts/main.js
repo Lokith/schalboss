@@ -8,6 +8,8 @@ function preload() {
 
     game.load.image('fondecran', 'assets/schalbi.png');
     game.load.image('overlay', 'assets/overlay.png');
+    game.load.image('overlay_bas', 'assets/overlay_bas.png');
+    game.load.image('coeur', 'assets/coeur.png')
 }
 
 var enveloppe;
@@ -19,7 +21,8 @@ var time = 2;
 function create() {
 
     game.add.image(0,0,'overlay');
-    game.add.image(0,898, 'overlay');
+    game.add.image(0,898, 'overlay_bas');
+    game.add.image(550, 7, 'coeur');
     game.add.image(0, 45, 'fondecran');
 
     enveloppeTimer = game.time.events.repeat(Phaser.Timer.SECOND * time, 100, createEnveloppeBlue, this);
