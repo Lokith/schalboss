@@ -12,10 +12,18 @@ function preload() {
     game.load.image('coeur', 'assets/coeur.png')
 }
 
-var enveloppe;
 var total = 1;
-var speed = 90000;
-var time = 2;
+var speed = 20000;
+
+var blue = 'bleu';
+var red = 'rouge';
+var yellow = 'jaune';
+
+var score = 0;
+var vie = 10;
+
+var textScore;
+var textVie;
 
 
 function create() {
@@ -25,26 +33,40 @@ function create() {
     game.add.image(550, 7, 'coeur');
     game.add.image(0, 45, 'fondecran');
 
-    enveloppeTimer = game.time.events.repeat(Phaser.Timer.SECOND * time, 100, createEnveloppeBlue, this);
+    enveloppeTimerBlue = game.time.events.loop(Phaser.Timer.SECOND, createEnveloppe, this, blue);
+    enveloppeTimerRed = game.time.events.loop(Phaser.Timer.SECOND * 3.4, createEnveloppe, this, red);
+    enveloppeTimerYellow = game.time.events.loop(Phaser.Timer.SECOND * 7.6, createEnveloppe, this, yellow);
 
 
+    textScore = game.add.text(0, 5, 'Score: 0', { font: "32px Arial", fill: "#000000", align: "center" });
+    textScore.anchor.setTo(0, 0);
+
+    textVie = game.add.text(250, 5, 'Vie: 10', { font: "32px Arial", fill: "#000000", align: "center" });
+    textVie.anchor.setTo(0, 0);
 }
 
 function update() {
-    if (total === 100)
-    {
-        game.time.events.remove(enveloppeTimer);
-        total = 0;
-        enveloppeTimer = game.time.events.repeat(Phaser.Timer.SECOND * time, 5, createEnveloppeBlue, this);
-        time = time*0.9;
-        speed -= 1000;
-    }
 
+if(score === 20) speed = 10000;
 }
 
-function createEnveloppeBlue(){
-
-    var enveloppe = game.add.sprite(getRandomInt(50,400), 0, 'enveloppe_bleu');
+function createEnveloppe(color){
+    var colorEnveloppe;
+    switch (color){
+        case 'bleu':
+            colorEnveloppe = 'enveloppe_bleu';
+            break;
+        case 'rouge':
+            colorEnveloppe = 'enveloppe_rouge';
+            break;
+        case 'jaune':
+            colorEnveloppe = 'enveloppe_jaune';
+            break;
+        default :
+            colorEnveloppe = 'enveloppe_bleu';
+            break;
+    }
+    var enveloppe = game.add.sprite(getRandomInt(-15,475), 0, colorEnveloppe);
     enveloppe.scale.setTo(0.4, 0.4);
     enveloppe.animations.add('run');
     enveloppe.animations.play('run', 20, true);
@@ -56,9 +78,22 @@ function createEnveloppeBlue(){
 }
 
 function destroyIt (enveloppe) {
+    console.log(enveloppe.key);
+    if(enveloppe.key === 'enveloppe_bleu') vie--;
+    if(enveloppe.key === 'enveloppe_rouge') score++;
+    if(enveloppe.key === 'enveloppe_jaune') score++;
     enveloppe.destroy();
+
+    textScore.setText('Score: '+ score);
+    textVie.setText('Vie: '+ vie);
 }
 
 function getRandomInt (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function render() {
+
+    game.debug.text("Time until event: " + game.time.events.duration, 32, 32);
+
 }
