@@ -11,14 +11,13 @@ function preload() {
     //  The second parameter is the URL of the image (relative)
     game.load.image('enveloppe', 'Tests_mouvement/enveloppe.png');
     game.load.image('colour', 'Tests_mouvement/colour.png');
-
+    game.load.spritesheet('button', 'Tests_mouvement/button_sprite_sheet.png');
 }
-var timer = 0;
 var total = 1;
 var state = true;
 var speed = 90000;
 var time = 2;
-
+var button;
 
 function create() {
 
@@ -29,9 +28,9 @@ function create() {
     createEnveloppe();
 
 
-    enveloppeTimer = game.time.events.repeat(Phaser.Timer.SECOND * 2, 5, createEnveloppe, this);
+    enveloppeTimer = game.time.events.repeat(Phaser.Timer.SECOND * time, 100, createEnveloppe, this);
 
-
+    button = game.add.button(game.world.centerX - 95, 800, 'button', actionOnClick, this, 2, 1, 0);
 }
 
 function update(){
@@ -55,9 +54,10 @@ function destoyIt (enveloppe) {
 
 function createEnveloppe(){
 
-        var enveloppe = game.add.sprite(game.world.randomX, 0, 'enveloppe');
+        var enveloppe = game.add.sprite(getRandomInt(50,590), 0, 'enveloppe');
         enveloppe.animations.add('run');
         enveloppe.animations.play('run', 20, true);
+        enveloppe.scale.setTo(2, 2);
 
         enveloppe.inputEnabled = true;
 
@@ -68,6 +68,17 @@ function createEnveloppe(){
         game.add.tween(enveloppe).to({ y: game.height + (1600 + enveloppe.y) }, speed, Phaser.Easing.Linear.None, true);
 
         total++;
-        timer = game.time.now + 100;
 
+
+
+}
+
+function actionOnClick () {
+
+
+
+}
+
+function getRandomInt (min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
