@@ -14,7 +14,6 @@ function preload() {
     game.load.spritesheet('button', 'Tests_mouvement/button_sprite_sheet.png');
 }
 var total = 1;
-var state = true;
 var speed = 90000;
 var time = 2;
 var button;
