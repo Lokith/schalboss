@@ -7,7 +7,6 @@ function preload() {
 function create() {
 
     splashScreen();
-    //loadAssets();
 
 }
 

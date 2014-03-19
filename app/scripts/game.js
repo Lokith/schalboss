@@ -17,7 +17,7 @@ var textScore;
 var textVie;
 //var textNiveau;
 
-function loadAssets() {
+function startGame() {
     game.add.image(0,0,'overlay');
     game.add.image(0,898, 'overlay_bas');
     game.add.image(550, 7, 'coeur');
