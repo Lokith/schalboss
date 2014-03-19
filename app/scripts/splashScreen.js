@@ -28,6 +28,11 @@ function splashScreen() {
     SpritePriorite.scale.setTo(0.3, 0.3);
     SpriteVie.scale.setTo(0.3, 0.3);
 
+    var fontTitre = game.add.retroFont('font', 31, 25, Phaser.RetroFont.TEXT_SET6, 10, 1, 1);
+    fontTitre.text = 'SCHALBOSS';
+    var titre = game.add.image(140, 40, fontTitre);
+    titre.scale.setTo(1.4,1.4);
+
 }
 
 function onStartButtonClicked(start_button) {

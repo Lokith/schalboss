@@ -8,6 +8,7 @@ function AssetsPreLoader() {
     game.load.image('enveloppe_jaune', 'assets/enveloppe-yellow-close.png');
     game.load.image('enveloppe_priorite', 'assets/enveloppe-priorite.png');
     game.load.image('enveloppe_vie', 'assets/enveloppe-vie.png');
+    game.load.image('font', 'assets/font_title.png');
 
     game.load.image('fondecran_start', 'assets/fond_starter.png');
     game.load.image('start_button', 'assets/start_button.png');
