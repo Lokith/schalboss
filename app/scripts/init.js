@@ -2,14 +2,14 @@
  * Created by PAGT08882 on 19/03/2014.
  */
 
-function splashScreen() {
-    game.paused = true;
-    game.add.image(0,0,'fondecran_start');
+function AssetsPreLoader() {
+    game.load.image('enveloppe_bleu', 'assets/enveloppe-blue-close.png');
+    game.load.image('enveloppe_rouge', 'assets/enveloppe-red-close.png');
+    game.load.image('enveloppe_jaune', 'assets/enveloppe-yellow-close.png');
+    game.load.image('fondecran_start', 'assets/fond_starter.png');
 
-    textScore = game.add.text(0, 5, 'Score: 0', { font: "32px Arial", fill: "#000000", align: "center" });
-    textScore.anchor.setTo(0, 0);
-
-    textVie = game.add.text(250, 5, 'Vie: 10', { font: "32px Arial", fill: "#000000", align: "center" });
-    textVie.anchor.setTo(0, 0);
-
+    game.load.image('fondecran', 'assets/schalbi.png');
+    game.load.image('overlay', 'assets/overlay.png');
+    game.load.image('overlay_bas', 'assets/overlay_bas.png');
+    game.load.image('coeur', 'assets/coeur.png')
 }
