@@ -5,6 +5,7 @@ function preload() {
     game.load.image('enveloppe_bleu', 'assets/enveloppe-blue-close.png');
     game.load.image('enveloppe_rouge', 'assets/enveloppe-red-close.png');
     game.load.image('enveloppe_jaune', 'assets/enveloppe-yellow-close.png');
+    game.load.image('fondecran_start', 'assets/fond_starter.png');
 
     game.load.image('fondecran', 'assets/schalbi.png');
     game.load.image('overlay', 'assets/overlay.png');
@@ -32,16 +33,10 @@ function create() {
     game.add.image(0,898, 'overlay_bas');
     game.add.image(550, 7, 'coeur');
     game.add.image(0, 45, 'fondecran');
+    splashScreen();
 
     enveloppeTimerBlue = game.time.events.loop(Phaser.Timer.SECOND, createEnveloppe, this);
 
-
-
-    textScore = game.add.text(0, 5, 'Score: 0', { font: "32px Arial", fill: "#000000", align: "center" });
-    textScore.anchor.setTo(0, 0);
-
-    textVie = game.add.text(250, 5, 'Vie: 10', { font: "32px Arial", fill: "#000000", align: "center" });
-    textVie.anchor.setTo(0, 0);
 }
 
 function update() {
