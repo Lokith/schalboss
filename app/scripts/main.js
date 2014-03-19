@@ -33,9 +33,8 @@ function create() {
     game.add.image(550, 7, 'coeur');
     game.add.image(0, 45, 'fondecran');
 
-    enveloppeTimerBlue = game.time.events.loop(Phaser.Timer.SECOND, createEnveloppe, this, blue);
-    enveloppeTimerRed = game.time.events.loop(Phaser.Timer.SECOND * 3.4, createEnveloppe, this, red);
-    enveloppeTimerYellow = game.time.events.loop(Phaser.Timer.SECOND * 7.6, createEnveloppe, this, yellow);
+    enveloppeTimerBlue = game.time.events.loop(Phaser.Timer.SECOND, createEnveloppe, this);
+
 
 
     textScore = game.add.text(0, 5, 'Score: 0', { font: "32px Arial", fill: "#000000", align: "center" });
@@ -47,27 +46,32 @@ function create() {
 
 function update() {
 
-if(score === 20) speed = 10000;
+    if(score === 10) speed = 18000;
+    if(score === 20) speed = 16000;
+    if(score === 30) speed = 14000;
+    if(score === 40) speed = 12000;
+    if(score === 50) speed = 10000;
 }
 
-function createEnveloppe(color){
+function createEnveloppe(){
+    color = game.rnd.integerInRange(1,3);
     var colorEnveloppe;
     switch (color){
-        case 'bleu':
+        case 1:
             colorEnveloppe = 'enveloppe_bleu';
             break;
-        case 'rouge':
+        case 2:
             colorEnveloppe = 'enveloppe_rouge';
             break;
-        case 'jaune':
+        case 3:
             colorEnveloppe = 'enveloppe_jaune';
             break;
         default :
             colorEnveloppe = 'enveloppe_bleu';
             break;
     }
-    var enveloppe = game.add.sprite(getRandomInt(-15,475), 0, colorEnveloppe);
-    enveloppe.scale.setTo(0.4, 0.4);
+    var enveloppe = game.add.sprite(game.rnd.integerInRange(1,5)*128-128, 0, colorEnveloppe);
+    enveloppe.scale.setTo(0.3, 0.3);
     enveloppe.animations.add('run');
     enveloppe.animations.play('run', 20, true);
     enveloppe.inputEnabled = true;
