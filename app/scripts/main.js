@@ -5,9 +5,7 @@ function preload() {
 }
 
 function create() {
-
     splashScreen();
-
 }
 
 function update() {
