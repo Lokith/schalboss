@@ -15,7 +15,7 @@ var niveau = 1;
 
 var textScore;
 var textVie;
-//var textNiveau;
+var textNiveau;
 
 function startGame() {
     game.add.image(0,0,'overlay');
@@ -24,12 +24,12 @@ function startGame() {
     game.add.image(0, 45, 'fondecran');
 
     textScore = game.add.text(0, 5, 'Score: 0', { font: "32px Arial", fill: "#000000", align: "center" });
-    textScore.anchor.setTo(0, 0);
 
-    textVie = game.add.text(250, 5, 'Vie: 10', { font: "32px Arial", fill: "#000000", align: "center" });
-    textVie.anchor.setTo(0, 0);
+    textVie = game.add.text(580, 5, '10', { font: "32px Arial", fill: "#000000", align: "center" });
 
-    enveloppeTimerBlue = game.time.events.loop(Phaser.Timer.SECOND, createEnveloppe, this);
+    textNiveau = game.add.text(250, 5, 'Niveau: 1', { font: "32px Arial", fill: "#000000", align: "center" });
+
+    game.time.events.loop(Phaser.Timer.SECOND, createEnveloppe, this);
 }
 
 function createEnveloppe(){
@@ -40,7 +40,7 @@ function createEnveloppe(){
         else if (color > 7)colorEnveloppe = 'enveloppe_bleu';
         speed = 9000;
         niveau = 2;
-        //textNiveau.setText('Niveau: '+ niveau);
+        textNiveau.setText('Niveau: '+ niveau);
     }
     else if(score >= 20 && score < 30){
         if(color <= 5) colorEnveloppe = 'enveloppe_rouge';
@@ -48,7 +48,7 @@ function createEnveloppe(){
         else if (color > 8)colorEnveloppe = 'enveloppe_jaune';
         speed = 8000;
         niveau = 3;
-        //textNiveau.setText('Niveau: '+ niveau);
+        textNiveau.setText('Niveau: '+ niveau);
     }
     else if(score >= 30 && score < 40){
         if(color <= 6) colorEnveloppe = 'enveloppe_rouge';
@@ -56,7 +56,7 @@ function createEnveloppe(){
         else if (color > 9)colorEnveloppe = 'enveloppe_jaune';
         speed = 7000;
         niveau = 4;
-        //textNiveau.setText('Niveau: '+ niveau);
+        textNiveau.setText('Niveau: '+ niveau);
     }
     else if(score >= 40){
         if(color <= 5) colorEnveloppe = 'enveloppe_rouge';
@@ -64,14 +64,14 @@ function createEnveloppe(){
         else if (color > 6)colorEnveloppe = 'enveloppe_jaune';
         speed = 6000;
         niveau = 5;
-        //textNiveau.setText('Niveau: '+ niveau);
+        textNiveau.setText('Niveau: '+ niveau);
     }
     else {
         if(color <= 6) colorEnveloppe = 'enveloppe_rouge';
         else if (color > 6)colorEnveloppe = 'enveloppe_bleu';
         speed = 10000;
         niveau = 1;
-        //textNiveau.setText('Niveau: '+ niveau);
+        textNiveau.setText('Niveau: '+ niveau);
     }
     var enveloppe = game.add.sprite(game.rnd.integerInRange(1,5)*128-128, 0, colorEnveloppe);
     enveloppe.scale.setTo(0.3, 0.3);
