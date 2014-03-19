@@ -2,7 +2,6 @@
  * Created by PAGT08882 on 19/03/2014.
  */
 
-var total = 1;
 var speed = 20000;
 
 var blue = 'bleu';
@@ -19,20 +18,21 @@ var textNiveau;
 
 function startGame() {
     game.add.image(0,0,'overlay');
-    game.add.image(0,898, 'overlay_bas');
     game.add.image(550, 7, 'coeur');
     game.add.image(0, 45, 'fondecran');
 
     textScore = game.add.text(0, 5, 'Score: 0', { font: "32px Arial", fill: "#000000", align: "center" });
-
     textVie = game.add.text(580, 5, '10', { font: "32px Arial", fill: "#000000", align: "center" });
-
     textNiveau = game.add.text(250, 5, 'Niveau: 1', { font: "32px Arial", fill: "#000000", align: "center" });
-
     game.time.events.loop(Phaser.Timer.SECOND, createEnveloppe, this);
 }
 
 function createEnveloppe(){
+
+    game.physics.startSystem(Phaser.Physics.ARCADE);
+
+
+
     var color = game.rnd.integerInRange(1,10);
     var colorEnveloppe;
     if(score >= 10 && score < 20){
@@ -75,13 +75,17 @@ function createEnveloppe(){
     }
     var enveloppe = game.add.sprite(game.rnd.integerInRange(1,5)*128-128, 0, colorEnveloppe);
     enveloppe.scale.setTo(0.3, 0.3);
-    enveloppe.animations.add('run');
-    enveloppe.animations.play('run', 36, true);
     enveloppe.inputEnabled = true;
     enveloppe.input.useHandCursor = true;
     enveloppe.events.onInputDown.add(destroyIt, this);
     game.add.tween(enveloppe).to({ y: game.height + (1600 + enveloppe.y) }, speed, Phaser.Easing.Linear.None, true);
-    total++;
+
+/*    game.physics.enable(enveloppe, Phaser.Physics.ARCADE);
+    enveloppe.body.velocity.y = 100;
+    overlay= game.add.sprite(0,898, 'overlay_bas');
+    game.physics.enable(overlay, Phaser.Physics.ARCADE);
+    overlay.body.immovable = true;
+    game.physics.arcade.collide(enveloppe, overlay, collisionHandler, null, this);*/
 }
 
 function destroyIt (enveloppe) {
@@ -102,5 +106,11 @@ function getRandomInt (min, max) {
 function render() {
 
     game.debug.text("Time until event: " + game.time.events.duration, 32, 32);
+
+}
+
+function collisionHandler (obj1, obj2) {
+
+    score += 100;
 
 }
