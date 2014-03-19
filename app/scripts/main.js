@@ -21,9 +21,11 @@ var yellow = 'jaune';
 
 var score = 0;
 var vie = 10;
+var niveau = 1;
 
 var textScore;
 var textVie;
+var textNiveau;
 
 
 function create() {
@@ -40,40 +42,62 @@ function create() {
     textScore = game.add.text(0, 5, 'Score: 0', { font: "32px Arial", fill: "#000000", align: "center" });
     textScore.anchor.setTo(0, 0);
 
-    textVie = game.add.text(250, 5, 'Vie: 10', { font: "32px Arial", fill: "#000000", align: "center" });
+    textVie = game.add.text(580, 5, '10', { font: "32px Arial", fill: "#000000", align: "center" });
     textVie.anchor.setTo(0, 0);
+
+    textNiveau = game.add.text(250, 5, 'Niveau: 1', { font: "32px Arial", fill: "#000000", align: "center" });
+    textNiveau.anchor.setTo(0, 0);
 }
 
 function update() {
 
-    if(score === 10) speed = 18000;
-    if(score === 20) speed = 16000;
-    if(score === 30) speed = 14000;
-    if(score === 40) speed = 12000;
-    if(score === 50) speed = 10000;
 }
 
 function createEnveloppe(){
-    color = game.rnd.integerInRange(1,3);
+    var color = game.rnd.integerInRange(1,10);
     var colorEnveloppe;
-    switch (color){
-        case 1:
-            colorEnveloppe = 'enveloppe_bleu';
-            break;
-        case 2:
-            colorEnveloppe = 'enveloppe_rouge';
-            break;
-        case 3:
-            colorEnveloppe = 'enveloppe_jaune';
-            break;
-        default :
-            colorEnveloppe = 'enveloppe_bleu';
-            break;
+    if(score >= 10 && score < 20){
+        if(color <= 7) colorEnveloppe = 'enveloppe_rouge';
+        else if (color > 7)colorEnveloppe = 'enveloppe_bleu';
+        speed = 9000;
+        niveau = 2;
+        textNiveau.setText('Niveau: '+ niveau);
+    }
+    else if(score >= 20 && score < 30){
+        if(color <= 5) colorEnveloppe = 'enveloppe_rouge';
+        else if (color > 5 && color <= 8)colorEnveloppe = 'enveloppe_bleu';
+        else if (color > 8)colorEnveloppe = 'enveloppe_jaune';
+        speed = 8000;
+        niveau = 3;
+        textNiveau.setText('Niveau: '+ niveau);
+    }
+    else if(score >= 30 && score < 40){
+        if(color <= 6) colorEnveloppe = 'enveloppe_rouge';
+        else if (color > 6 && color <= 9)colorEnveloppe = 'enveloppe_bleu';
+        else if (color > 9)colorEnveloppe = 'enveloppe_jaune';
+        speed = 7000;
+        niveau = 4;
+        textNiveau.setText('Niveau: '+ niveau);
+    }
+    else if(score >= 40){
+        if(color <= 5) colorEnveloppe = 'enveloppe_rouge';
+        else if (color > 5 && color <= 6)colorEnveloppe = 'enveloppe_bleu';
+        else if (color > 6)colorEnveloppe = 'enveloppe_jaune';
+        speed = 6000;
+        niveau = 5;
+        textNiveau.setText('Niveau: '+ niveau);
+        }
+    else {
+        if(color <= 6) colorEnveloppe = 'enveloppe_rouge';
+        else if (color > 6)colorEnveloppe = 'enveloppe_bleu';
+        speed = 10000;
+        niveau = 1;
+        textNiveau.setText('Niveau: '+ niveau);
     }
     var enveloppe = game.add.sprite(game.rnd.integerInRange(1,5)*128-128, 0, colorEnveloppe);
     enveloppe.scale.setTo(0.3, 0.3);
     enveloppe.animations.add('run');
-    enveloppe.animations.play('run', 20, true);
+    enveloppe.animations.play('run', 36, true);
     enveloppe.inputEnabled = true;
     enveloppe.input.useHandCursor = true;
     enveloppe.events.onInputDown.add(destroyIt, this);
@@ -89,7 +113,7 @@ function destroyIt (enveloppe) {
     enveloppe.destroy();
 
     textScore.setText('Score: '+ score);
-    textVie.setText('Vie: '+ vie);
+    textVie.setText(vie);
 }
 
 function getRandomInt (min, max) {
