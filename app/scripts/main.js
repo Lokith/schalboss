@@ -5,6 +5,8 @@ function preload() {
 }
 
 function create() {
+    game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
+    game.scale.startFullScreen();
     splashScreen();
 }
 
