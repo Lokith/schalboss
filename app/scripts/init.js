@@ -2,7 +2,7 @@
  * Created by PAGT08882 on 19/03/2014.
  */
 
-function AssetsPreLoader() {
+function assetsPreLoader() {
     game.load.image('enveloppe_bleu', 'assets/enveloppe-blue-close.png');
     game.load.image('enveloppe_rouge', 'assets/enveloppe-red-close.png');
     game.load.image('enveloppe_jaune', 'assets/enveloppe-yellow-close.png');
