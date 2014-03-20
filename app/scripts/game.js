@@ -102,7 +102,7 @@ function createEnveloppe(){
     enveloppe.events.onInputDown.add(destroyIt, this);
 
     var bounce = game.add.tween(enveloppe).to({ y:890 }, speed, Phaser.Easing.Linear.None, true);
-    bounce.onComplete.add(BounceCollision, this);
+    bounce.onComplete.add(bounceCollision, this);
 
     game.add.sprite(0,900,'overlay_bas');
 }
@@ -133,11 +133,8 @@ function render() {
     game.debug.text("Time until event: " + game.time.events.duration, 32, 32);
 }
 
-function BounceCollision(enveloppe){
-    if(enveloppe.clicked === true){
-
-    }
-    else {
+function bounceCollision(enveloppe){
+    if(!enveloppe.clicked) {
         if(enveloppe.key === 'enveloppe_rouge'){
             vie--;
         }

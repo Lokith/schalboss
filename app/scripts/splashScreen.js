@@ -36,5 +36,5 @@ function splashScreen() {
 
 function onStartButtonClicked(start_button) {
     start_button.destroy();
-    showLeaderboard();
+    startGame();
 }
