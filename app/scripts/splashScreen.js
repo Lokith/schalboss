@@ -10,11 +10,11 @@ function splashScreen() {
     start_button.input.useHandCursor = true;
     start_button.events.onInputDown.add(onStartButtonClicked, this);
 
-    var TA_EnvBleu = game.add.text(150,140, 'Ca c\'est du boulot! Faites passer. ', { font: "24px Arial", fill: "#000000", align: "center" });
-    var TA_EnvRouge = game.add.text(150,240, 'Une farce schalberienne ! Cliquer dessus !', { font: "24px Arial", fill: "#000000", align: "center" });
-    var TA_EnvJaune = game.add.text(150,340, 'Vous feriez mieux de l\'ouvrir... ou pas. ', { font: "24px Arial", fill: "#000000", align: "center" });
-    var TA_EnvPriorite = game.add.text(150,440, 'Essayez donc de la rattraper pour voir.', { font: "24px Arial", fill: "#000000", align: "center" });
-    var TA_EnvVie = game.add.text(150,540, 'Ticket +1 Vie. C\'est cadeau. ', { font: "24px Arial", fill: "#000000", align: "center" });
+    game.add.text(150,140, 'Ca c\'est du boulot! Faites passer. ', { font: "24px Arial", fill: "#000000", align: "center" });
+    game.add.text(150,240, 'Une farce schalberienne ! Cliquer dessus !', { font: "24px Arial", fill: "#000000", align: "center" });
+    game.add.text(150,340, 'Vous feriez mieux de l\'ouvrir... ou pas. ', { font: "24px Arial", fill: "#000000", align: "center" });
+    game.add.text(150,440, 'Essayez donc de la rattraper pour voir.', { font: "24px Arial", fill: "#000000", align: "center" });
+    game.add.text(150,540, 'Ticket +1 Vie. C\'est cadeau. ', { font: "24px Arial", fill: "#000000", align: "center" });
 
     var SpriteBleu = game.add.image(10,80, 'enveloppe_bleu');
     var SpriteRouge = game.add.image(10,180, 'enveloppe_rouge');
@@ -32,10 +32,9 @@ function splashScreen() {
     fontTitre.text = 'SCHALBOSS';
     var titre = game.add.image(140, 40, fontTitre);
     titre.scale.setTo(1.4,1.4);
-
 }
 
 function onStartButtonClicked(start_button) {
     start_button.destroy();
-    startGame();
+    showLeaderboard();
 }
