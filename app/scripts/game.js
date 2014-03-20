@@ -24,10 +24,86 @@ function startGame() {
     textScore = game.add.text(0, 5, 'Score: 0', { font: "32px Arial", fill: "#000000", align: "center" });
     textVie = game.add.text(580, 5, '10', { font: "32px Arial", fill: "#000000", align: "center" });
     textNiveau = game.add.text(250, 5, 'Niveau: 1', { font: "32px Arial", fill: "#000000", align: "center" });
-    game.time.events.loop(Phaser.Timer.SECOND, createEnveloppe, this);
+    game.time.events.loop(Phaser.Timer.SECOND, createEnveloppe, this,0, 0 );
 }
 
-function createEnveloppe(){
+function createEnveloppe(x,y){
+    var colorEnveloppe;
+    if(y === 0){
+        colorEnveloppe = checkColorAndScore(score);
+        x = game.rnd.integerInRange(1,5)*128-128;
+    }
+    else {
+        var color = game.rnd.integerInRange(1,10);
+        if(color <= 5){
+            colorEnveloppe = 'enveloppe_rouge';
+        }
+        else {
+            colorEnveloppe = 'enveloppe_bleu';
+        }
+    }
+
+    var enveloppe = game.add.sprite(x, y , colorEnveloppe);
+    enveloppe.scale.setTo(0.3, 0.3);
+    enveloppe.inputEnabled = true;
+    enveloppe.input.useHandCursor = true;
+    enveloppe.events.onInputDown.add(destroyIt, this);
+
+    var bounce = game.add.tween(enveloppe).to({ y:890 }, speed, Phaser.Easing.Linear.None, true);
+    bounce.onComplete.add(bounceCollision, this);
+
+    game.add.sprite(0,900,'overlay_bas');
+}
+
+function destroyIt (enveloppe) {
+    if(enveloppe.key === 'enveloppe_bleu') {
+        vie--;
+    }
+    if(enveloppe.key === 'enveloppe_rouge'){
+        score++;
+    }
+    if(enveloppe.key === 'enveloppe_jaune') {
+        var positionY = enveloppe.y
+        var positionX = enveloppe.x;
+
+        createEnveloppe(positionX - 64,positionY + 30);
+        createEnveloppe(positionX + 64,positionY + 80);
+        score++;
+    }
+
+    enveloppe.destroy();
+    enveloppe.clicked = true;
+
+    textScore.setText('Score: '+ score);
+    textVie.setText(vie);
+}
+
+function getRandomInt (min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function render() {
+    game.debug.text("Time until event: " + game.time.events.duration, 32, 32);
+}
+
+function bounceCollision(enveloppe){
+    if(!enveloppe.clicked) {
+        if(enveloppe.key === 'enveloppe_rouge'){
+            vie--;
+        }
+        if(enveloppe.key === 'enveloppe_bleu') {
+            score++;
+        }
+        if(enveloppe.key === 'enveloppe_jaune') {
+            vie--;
+        }
+        textScore.setText('Score: '+ score);
+        textVie.setText(vie);
+        enveloppe.destroy();
+    }
+}
+
+function checkColorAndScore (score){
     var color = game.rnd.integerInRange(1,10);
     var colorEnveloppe;
     if(score >= 10 && score < 20){
@@ -95,57 +171,5 @@ function createEnveloppe(){
         textNiveau.setText('Niveau: '+ niveau);
     }
 
-    var enveloppe = game.add.sprite(game.rnd.integerInRange(1,5)*128-128, 0, colorEnveloppe);
-    enveloppe.scale.setTo(0.3, 0.3);
-    enveloppe.inputEnabled = true;
-    enveloppe.input.useHandCursor = true;
-    enveloppe.events.onInputDown.add(destroyIt, this);
-
-    var bounce = game.add.tween(enveloppe).to({ y:890 }, speed, Phaser.Easing.Linear.None, true);
-    bounce.onComplete.add(bounceCollision, this);
-
-    game.add.sprite(0,900,'overlay_bas');
-}
-
-function destroyIt (enveloppe) {
-    if(enveloppe.key === 'enveloppe_bleu') {
-        vie--;
-    }
-    if(enveloppe.key === 'enveloppe_rouge'){
-        score++;
-    }
-    if(enveloppe.key === 'enveloppe_jaune') {
-        score++;
-    }
-
-    enveloppe.destroy();
-    enveloppe.clicked = true;
-
-    textScore.setText('Score: '+ score);
-    textVie.setText(vie);
-}
-
-function getRandomInt (min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-function render() {
-    game.debug.text("Time until event: " + game.time.events.duration, 32, 32);
-}
-
-function bounceCollision(enveloppe){
-    if(!enveloppe.clicked) {
-        if(enveloppe.key === 'enveloppe_rouge'){
-            vie--;
-        }
-        if(enveloppe.key === 'enveloppe_bleu') {
-            score++;
-        }
-        if(enveloppe.key === 'enveloppe_jaune') {
-            vie--;
-        }
-        textScore.setText('Score: '+ score);
-        textVie.setText(vie);
-        enveloppe.destroy();
-    }
+    return colorEnveloppe;
 }
