@@ -31,39 +31,65 @@ function createEnveloppe(){
     var color = game.rnd.integerInRange(1,10);
     var colorEnveloppe;
     if(score >= 10 && score < 20){
-        if(color <= 7) colorEnveloppe = 'enveloppe_rouge';
-        else if (color > 7)colorEnveloppe = 'enveloppe_bleu';
+        if(color <= 7){
+            colorEnveloppe = 'enveloppe_rouge';
+        }
+        else if (color > 7){
+            colorEnveloppe = 'enveloppe_bleu';
+        }
         speed = 9000;
         niveau = 2;
         textNiveau.setText('Niveau: '+ niveau);
     }
     else if(score >= 20 && score < 30){
-        if(color <= 5) colorEnveloppe = 'enveloppe_rouge';
-        else if (color > 5 && color <= 8)colorEnveloppe = 'enveloppe_bleu';
-        else if (color > 8)colorEnveloppe = 'enveloppe_jaune';
+        if(color <= 5){
+            colorEnveloppe = 'enveloppe_rouge';
+        }
+        else if (color > 5 && color <= 8){
+            colorEnveloppe = 'enveloppe_bleu';
+        }
+        else if (color > 8){
+            colorEnveloppe = 'enveloppe_jaune';
+        }
         speed = 8000;
         niveau = 3;
         textNiveau.setText('Niveau: '+ niveau);
     }
     else if(score >= 30 && score < 40){
-        if(color <= 6) colorEnveloppe = 'enveloppe_rouge';
-        else if (color > 6 && color <= 9)colorEnveloppe = 'enveloppe_bleu';
-        else if (color > 9)colorEnveloppe = 'enveloppe_jaune';
+        if(color <= 6) {
+            colorEnveloppe = 'enveloppe_rouge';
+        }
+        else if (color > 6 && color <= 9){
+            colorEnveloppe = 'enveloppe_bleu';
+        }
+        else if (color > 9){
+            colorEnveloppe = 'enveloppe_jaune';
+        }
         speed = 7000;
         niveau = 4;
         textNiveau.setText('Niveau: '+ niveau);
     }
     else if(score >= 40){
-        if(color <= 5) colorEnveloppe = 'enveloppe_rouge';
-        else if (color > 5 && color <= 6)colorEnveloppe = 'enveloppe_bleu';
-        else if (color > 6)colorEnveloppe = 'enveloppe_jaune';
+        if(color <= 5) {
+            colorEnveloppe = 'enveloppe_rouge';
+        }
+        else if (color > 5 && color <= 6){
+            colorEnveloppe = 'enveloppe_bleu';
+        }
+        else if (color > 6){
+            colorEnveloppe = 'enveloppe_jaune';
+        }
         speed = 6000;
         niveau = 5;
         textNiveau.setText('Niveau: '+ niveau);
     }
     else {
-        if(color <= 6) colorEnveloppe = 'enveloppe_rouge';
-        else if (color > 6)colorEnveloppe = 'enveloppe_bleu';
+        if(color <= 6) {
+            colorEnveloppe = 'enveloppe_rouge';
+        }
+        else if (color > 6){
+            colorEnveloppe = 'enveloppe_bleu';
+        }
         speed = 10000;
         niveau = 1;
         textNiveau.setText('Niveau: '+ niveau);
@@ -82,9 +108,15 @@ function createEnveloppe(){
 }
 
 function destroyIt (enveloppe) {
-    if(enveloppe.key === 'enveloppe_bleu') vie--;
-    if(enveloppe.key === 'enveloppe_rouge') score++;
-    if(enveloppe.key === 'enveloppe_jaune') score++;
+    if(enveloppe.key === 'enveloppe_bleu') {
+        vie--;
+    }
+    if(enveloppe.key === 'enveloppe_rouge'){
+        score++;
+    }
+    if(enveloppe.key === 'enveloppe_jaune') {
+        score++;
+    }
 
     enveloppe.destroy();
     enveloppe.clicked = true;
@@ -106,10 +138,15 @@ function BounceCollision(enveloppe){
 
     }
     else {
-        if(enveloppe.key == 'enveloppe_rouge')vie--;
-        if(enveloppe.key === 'enveloppe_bleu') score++;
-        if(enveloppe.key === 'enveloppe_jaune') vie--;
-
+        if(enveloppe.key === 'enveloppe_rouge'){
+            vie--;
+        }
+        if(enveloppe.key === 'enveloppe_bleu') {
+            score++;
+        }
+        if(enveloppe.key === 'enveloppe_jaune') {
+            vie--;
+        }
         textScore.setText('Score: '+ score);
         textVie.setText(vie);
         enveloppe.destroy();
