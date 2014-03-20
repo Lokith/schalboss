@@ -3,21 +3,13 @@
  * Gestion des datas via Firebase.
  */
 
-var leaderboard = new Array();
+var leaderboard;
 
 function setScore(iName, iScore) {
     var uplink = new Firebase("https://burning-fire-8131.firebaseio.com");
     var highscore = uplink.child('highscore/');
-    highscore.push({name : iName, score : iScore});
-    var i = 0;
     highscore.on('value', function(snap) {
-        leaderboard[i] = snap;
-        i++;
+        leaderboard = snap;
     });
-}
-
-function testUpLink() {
-//    setScore('Aurelien', 250);
-//    setScore('Pierre', 250);
-//    setScore('Remy', 250);
+    highscore.push({name : iName, score : iScore});
 }
